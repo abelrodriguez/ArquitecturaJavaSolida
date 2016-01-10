@@ -1,11 +1,10 @@
+<%@page import="com.mysql.jdbc.DatabaseMetaData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.arquitecturajavasolida.DataBaseHelper" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.arquitecturajavasolida.Libro" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,60 +13,39 @@
 <title>Lista de Libros</title>
 </head>
 <body>
-<%
-	Connection conexion = null;
-	Statement sentencia = null;
-	ResultSet rs = null;
+
 	
-	try {
-		// Abrimos conexión con BBDD
-		Class.forName("com.mysql.jdbc.Driver");
-		conexion = DriverManager.getConnection("jdbc:mysql://localhost/arquitecturajavasolida", "manager", "manager");
-		
+	<select name="categoria">
+		<option value="seleccionar">Seleccionar</option>
+
+	<%
 		// Obtenemos los registros
-		sentencia = conexion.createStatement();
-		String consultaSQL = "select isbn, titulo, categoria from libros";
-		
-		rs = sentencia.executeQuery( consultaSQL );
+		List<String> listaDeCategorias = null;
+		listaDeCategorias = Libro.buscarTodasLasCategorias();
 		
 		// Cargamos los datos
-		while(rs.next()) { %>
-			<%=rs.getString("isbn")%>
-			<%=rs.getString("titulo")%>
-			<%=rs.getString("categoria")%>
-			<br/>
-		<% }
+		for(String categoria:listaDeCategorias) {
+	%>
+			<option value="<%=categoria %>"> <%=categoria %></option>
+	<%	} 		%>
+	
+	</select>
+	<br/>
 		
-	} catch (ClassNotFoundException e) {
-		System.out.println("Error en la carga del driver" + e.getMessage());
-	} catch (SQLException e) {
-		System.out.println("Error accediendo a la BBDD" + e.getMessage());
-	} finally {
+	<%
+		// Obtenemos los registros
+		List<Libro> listaDeLibros=null;
+		listaDeLibros=Libro.buscarTodos();
 		
-		// Cerramos las conexiones
-		if (rs != null) {
-			try { rs.close(); 
-			} catch (SQLException e) {
-				System.out.println("Error cerrando el resultset" + e.getMessage());
-			}
-		}
-		
-		if (sentencia != null) {
-			try { sentencia.close(); 
-			} catch (SQLException e) {
-				System.out.println("Error cerrando la sentencia" + e.getMessage());
-			}
-		}
-		
-		if (conexion != null) {
-			try { conexion.close(); 
-			} catch (SQLException e) {
-				System.out.println("Error cerrando la conexion" + e.getMessage());
-			}
-		}
-	}
-
+		// Cargamos los datos
+		for(Libro libro:listaDeLibros) { 
 %>
+			<%=libro.getisbn()%>
+			<%=libro.getTitulo()%>
+			<%=libro.getCategoria()%>
+			<br/>
+	<% 	} 
+	%>
 
 <a href="FormularioInsertarLibro.jsp">Insertar Libro</a>
 
