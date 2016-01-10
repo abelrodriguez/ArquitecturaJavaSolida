@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	
+	<form name="filtro">
 	<select name="categoria">
 		<option value="seleccionar">Seleccionar</option>
 
@@ -30,12 +30,20 @@
 	<%	} 		%>
 	
 	</select>
+	<input type="submit" value="Filtrar"/>
+	</form>
+	
 	<br/>
 		
 	<%
 		// Obtenemos los registros
 		List<Libro> listaDeLibros=null;
-		listaDeLibros=Libro.buscarTodos();
+		if (request.getParameter("categoria")==null || request.getParameter("categoria").equals("seleccionar")) {
+			listaDeLibros=Libro.buscarTodos();	
+		} else {
+			listaDeLibros = Libro.buscarPorCategoria(request.getParameter("categoria"));
+		}
+		
 		
 		// Cargamos los datos
 		for(Libro libro:listaDeLibros) { 
@@ -43,6 +51,8 @@
 			<%=libro.getisbn()%>
 			<%=libro.getTitulo()%>
 			<%=libro.getCategoria()%>
+			<a href="BorrarLibro.jsp?isbn=<%=libro.getisbn()%>">Borrar</a>
+			<a href="FormularioEditarLibro.jsp?isbn=<%=libro.getisbn()%>">Editar</a>
 			<br/>
 	<% 	} 
 	%>

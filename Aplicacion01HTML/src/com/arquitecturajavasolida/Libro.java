@@ -39,16 +39,33 @@ public class Libro {
 	}
 	
 	public Libro() {
-		
+		super();
+	}
+	public Libro(String isbn) {
+		super();
+		this.isbn = isbn;
 	}
 	
 	public void insertar() {
-		/*String consultaSQL = "insert into libros (isbn, titulo, categoria) values ";
+		String consultaSQL = "insert into libros (isbn, titulo, categoria) values ";
 		consultaSQL += "('" + this.isbn + "','" + this.titulo + "','" + this.categoria + "')";
 		
 		DataBaseHelper helper = new DataBaseHelper();
 		
-		helper.modificarRegistro( consultaSQL );*/
+		helper.modificarRegistro( consultaSQL );
+	}
+	
+	public void salvar() {
+		String consultaSQL = "update libros set titulo='" + this.titulo + "', categoria='" + this.categoria + "' where isbn='" + this.isbn + "'";
+		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
+		helper.modificarRegistro(consultaSQL);
+	}
+	
+	public void borrar() {
+		String consultaSQL = "delete from libros where isbn='" + this.isbn + "'";
+		System.out.println(consultaSQL);
+		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
+		helper.modificarRegistro(consultaSQL);
 	}
 	
 	public static List<Libro> buscarTodos() {
@@ -66,6 +83,23 @@ public class Libro {
 		
 		
 		return listaDeCategorias;
+	}
+	
+	public static Libro buscarPorClave(String isbn) {
+		String consultaSQL = "select isbn, titulo, categoria from libros where isbn='" + isbn + "'";
+		
+		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
+		List<Libro> listaDeLibros = helper.seleccionarRegistros(consultaSQL, Libro.class);
+		
+		return listaDeLibros.get(0);
+	}
+	
+	public static List<Libro> buscarPorCategoria( String categoria) {
+		String consultaSQL = "select isbn, titulo, categoria from libros where categoria='" + categoria + "'";
+		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
+		List<Libro> listaDeLibros = helper.seleccionarRegistros(consultaSQL, Libro.class);
+		
+		return listaDeLibros;
 	}
 	
 }
