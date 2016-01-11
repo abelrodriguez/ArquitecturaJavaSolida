@@ -46,29 +46,29 @@ public class Libro {
 		this.isbn = isbn;
 	}
 	
-	public void insertar() {
+	public void insertar() throws DataBaseException {
 		String consultaSQL = "insert into libros (isbn, titulo, categoria) values ";
 		consultaSQL += "('" + this.isbn + "','" + this.titulo + "','" + this.categoria + "')";
 		
-		DataBaseHelper helper = new DataBaseHelper();
+		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
 		
 		helper.modificarRegistro( consultaSQL );
 	}
 	
-	public void salvar() {
+	public void salvar() throws DataBaseException {
 		String consultaSQL = "update libros set titulo='" + this.titulo + "', categoria='" + this.categoria + "' where isbn='" + this.isbn + "'";
 		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
 		helper.modificarRegistro(consultaSQL);
 	}
 	
-	public void borrar() {
+	public void borrar() throws DataBaseException {
 		String consultaSQL = "delete from libros where isbn='" + this.isbn + "'";
 		System.out.println(consultaSQL);
 		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
 		helper.modificarRegistro(consultaSQL);
 	}
 	
-	public static List<Libro> buscarTodos() {
+	public static List<Libro> buscarTodos() throws DataBaseException {
 		String consultaSQL = "select isbn, titulo, categoria from libros";
 		DataBaseHelper<Libro> helper = new DataBaseHelper<Libro>();
 		List<Libro> listaDeLibros = helper.seleccionarRegistros(consultaSQL, Libro.class);
