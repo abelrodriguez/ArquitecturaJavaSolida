@@ -8,9 +8,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import java.lang.reflect.Method;;
 
 public class DataBaseHelper<T> {
+	private static final Logger log = LogManager.getLogger(DataBaseHelper.class.getPackage().getName());
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://127.0.0.1/arquitecturajavasolida";
@@ -33,10 +38,10 @@ public class DataBaseHelper<T> {
 			
 			
 		} catch (ClassNotFoundException e) {
-			System.out.println("Error Driver: " + e.getMessage());
+			log.error("Error Driver: " + e.getMessage());
 			throw new DataBaseException("Clase no encontrada");
 		} catch (SQLException e) {
-			System.out.println("Error SQL: " + e.getMessage());
+			log.error("Error SQL: " + e.getMessage());
 			throw new DataBaseException("Error de SQL");
 		} finally {
 		
