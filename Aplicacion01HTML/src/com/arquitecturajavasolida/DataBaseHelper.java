@@ -22,7 +22,7 @@ public class DataBaseHelper<T> {
 	private static final String USUARIO = "arquitecturajava";
 	private static final String PASS = "arquitecturajava";
 	
-	public int modificarRegistro( String consultaSQL ) throws DataBaseException {
+	public int modificarRegistro( String consultaSQL ) {
 		Connection conexion = null;
 		Statement sentencia = null;
 		int filasAfectadas = 0;
@@ -39,10 +39,12 @@ public class DataBaseHelper<T> {
 			
 		} catch (ClassNotFoundException e) {
 			log.error("Error Driver: " + e.getMessage());
-			throw new DataBaseException("Clase no encontrada");
+			throw new DataBaseException("Clase no encontrada", e);
+			
 		} catch (SQLException e) {
 			log.error("Error SQL: " + e.getMessage());
-			throw new DataBaseException("Error de SQL");
+			throw new DataBaseException("Error de SQL", e);
+			
 		} finally {
 		
 			// Cerramos las conexiones
@@ -64,7 +66,7 @@ public class DataBaseHelper<T> {
 		Connection conexion = null;
 		Statement sentencia = null;
 		ResultSet filas = null;
-		ArrayList<T> listaDeObjetos=new ArrayList<T>();
+		List<T> listaDeObjetos=new ArrayList<T>();
 		
 		System.out.println(consultaSQL);
 		try {

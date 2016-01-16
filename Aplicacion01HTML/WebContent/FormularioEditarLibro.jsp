@@ -13,7 +13,7 @@
 	<title>Formulario Edición Libro</title>
 </head>
 <body>
-	<form id="formularioEdicion" action="SalvarLibro.jsp" onsubmit="return validacion();">
+	<form id="formularioEdicion" action="SalvarLibro.do" onsubmit="return validacion();">
 		<fieldset>
 			<legend>Formulario edición libro</legend>
 			

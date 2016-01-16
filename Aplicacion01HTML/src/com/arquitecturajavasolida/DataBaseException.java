@@ -1,6 +1,6 @@
 package com.arquitecturajavasolida;
 
-public class DataBaseException extends Exception {
+public class DataBaseException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 	
