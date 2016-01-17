@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	<form name="filtro">
+	<form name="filtro" action="FiltrarLibrosPorCategoria.do">
 		<select name="categoria">
 			<option value="seleccionar">Seleccionar</option>
 			<c:forEach var="categoria" items="${listaDeCategorias}">
