@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
@@ -19,7 +22,12 @@
 			<input id="titulo" type="text" name="titulo" /></p>
 			
 			<p><label for="categoria">Categoria:</label>
-			<input id="categoria" type="text" name="categoria" /></p>
+			<select name="categoria">
+				<c:forEach var="categoria" items="${listaDeCategorias}">
+					<option value="${categoria}">${categoria}</option>
+				</c:forEach>
+			</select>
+			</p>
 			
 			<p><input type="submit" value="Insertar"/></p>
 		</fieldset>

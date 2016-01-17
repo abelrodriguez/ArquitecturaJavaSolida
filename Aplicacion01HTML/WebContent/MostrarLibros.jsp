@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.arquitecturajavasolida.Libro" %>
@@ -15,58 +15,25 @@
 <body>
 
 	<form name="filtro">
-	<select name="categoria">
-		<option value="seleccionar">Seleccionar</option>
-
-	<%
-		// Obtenemos los registros
-		@SuppressWarnings("unchecked")
-		List<String> listaDeCategorias = (List<String>)request.getAttribute("listaDeCategorias");
-		
-		
-	
-		if (listaDeCategorias != null) {
-			// Cargamos los datos
-			for(String categoria:listaDeCategorias) {
-				if (categoria.equals(request.getParameter("categoria"))) {
-	%>
-					<option value="<%=categoria %>" selected> <%=categoria %></option>
-	<%
-				} else { 
-	%>
-					<option value="<%=categoria %>"> <%=categoria %></option>
-	<%
-				}	
-			} 	
-		}
-	%>
-	
-	</select>
-	<input type="submit" value="Filtrar"/>
+		<select name="categoria">
+			<option value="seleccionar">Seleccionar</option>
+			<c:forEach var="categoria" items="${listaDeCategorias}">
+				<option value="${categoria}">${categoria}</option>
+			</c:forEach>
+		</select>
+		<input type="submit" value="Filtrar"/>
 	</form>
 	
 	<br/>
 		
-	<%
-		// Obtenemos los registros
-		@SuppressWarnings("unchecked")
-		List<Libro> listaDeLibros=(List<Libro>)request.getAttribute("listaDeLibros");
-		
-		if (listaDeLibros != null) {
-			// Cargamos los datos
-			for(Libro libro:listaDeLibros) { 
-	%>
-				<%=libro.getisbn()%>
-				<%=libro.getTitulo()%>
-				<%=libro.getCategoria()%>
-				<a href="BorrarLibro.do?isbn=<%=libro.getisbn()%>">Borrar</a>
-				<a href="FormularioEditarLibro.jsp?isbn=<%=libro.getisbn()%>">Editar</a>
-				<br/>
-	<% 		} 
-		}
-	%>
+	<c:forEach var="libro" items="${listaDeLibros}">
+		${libro.isbn} | ${libro.titulo} | ${libro.categoria}
+		<a href="BorrarLibro.do?isbn=${libro.isbn}">Borrar</a>
+		<a href="FormularioEditarLibro.do?isbn=${libro.isbn}">Editar</a>
+		<br/>
+	</c:forEach>
 
-<a href="FormularioInsertarLibro.jsp">Insertar Libro</a>
+	<a href="FormularioInsertarLibro.do">Insertar Libro</a>
 
 </body>
 </html>
