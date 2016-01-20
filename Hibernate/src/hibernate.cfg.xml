@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost/arquitecturajavasolida</property>
+		<property name="connection.username">arquitecturajava</property>
+		<property name="connection.password">arquitecturajava</property>
+		<property name="connection.pool_size">5</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="show_sql">true</property>
+		
+		<mapping resource="com/arquitecturajava/aplicacion/bo/Libro.xml"/>
+	</session-factory>
+</hibernate-configuration>

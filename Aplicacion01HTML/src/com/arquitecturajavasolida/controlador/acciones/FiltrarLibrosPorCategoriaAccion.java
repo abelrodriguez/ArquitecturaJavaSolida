@@ -15,7 +15,7 @@ public class FiltrarLibrosPorCategoriaAccion extends Accion {
 		System.out.println("Filtrar");
 		String categoria = request.getParameter("categoria");
 		List<Libro> listaDeLibros = null;
-		List<String> listaDeCategorias = Libro.buscarTodasLasCategorias();
+		List<Libro> listaDeCategorias = Libro.buscarTodasLasCategorias();
 		
 		if (categoria == null || categoria.equals("seleccionar")) {
 			listaDeLibros = Libro.buscarTodos();

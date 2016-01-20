@@ -12,7 +12,7 @@ public class FormularioEditarLibroAccion extends Accion {
 	@Override
 	public String ejecutar(HttpServletRequest request, HttpServletResponse response) {
 		String isbn = request.getParameter("isbn");
-		List<String> listaDeCategorias = Libro.buscarTodasLasCategorias();
+		List<Libro> listaDeCategorias = Libro.buscarTodasLasCategorias();
 		
 		Libro libro = Libro.buscarPorClave(isbn);
 		

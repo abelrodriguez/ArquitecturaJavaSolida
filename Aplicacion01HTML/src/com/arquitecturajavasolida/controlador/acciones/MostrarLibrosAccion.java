@@ -14,7 +14,7 @@ public class MostrarLibrosAccion extends Accion {
 		
 
 		List<Libro> listaDeLibros = Libro.buscarTodos();
-		List<String> listaDeCategorias = Libro.buscarTodasLasCategorias();
+		List<Libro> listaDeCategorias = Libro.buscarTodasLasCategorias();
 		
 		request.setAttribute("listaDeLibros", listaDeLibros);
 		request.setAttribute("listaDeCategorias", listaDeCategorias);
