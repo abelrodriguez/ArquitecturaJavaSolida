@@ -13,5 +13,6 @@
 		<mapping resource="com/arquitecturajavasolida/Libro.xml"/>  
 		-->
 		<mapping class="com.arquitecturajavasolida.Libro" />
+		<mapping class="com.arquitecturajavasolida.Categoria" />	
 	</session-factory>
 </hibernate-configuration>

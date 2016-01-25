@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arquitecturajavasolida.Categoria;
 import com.arquitecturajavasolida.Libro;
 
 public class MostrarLibrosAccion extends Accion {
@@ -14,7 +15,7 @@ public class MostrarLibrosAccion extends Accion {
 		
 
 		List<Libro> listaDeLibros = Libro.buscarTodos();
-		List<Libro> listaDeCategorias = Libro.buscarTodasLasCategorias();
+		List<Categoria> listaDeCategorias = Categoria.buscarTodos();
 		
 		request.setAttribute("listaDeLibros", listaDeLibros);
 		request.setAttribute("listaDeCategorias", listaDeCategorias);

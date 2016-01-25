@@ -5,14 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.arquitecturajavasolida.Libro;
+import com.arquitecturajavasolida.Categoria;
 
 public class FormularioInsertarLibroAccion extends Accion {
 
 	@Override
 	public String ejecutar(HttpServletRequest request, HttpServletResponse response) {
-		List<Libro> listaDeCategorias = null;
-		listaDeCategorias = Libro.buscarTodasLasCategorias();
+		List<Categoria> listaDeCategorias = null;
+		listaDeCategorias = Categoria.buscarTodos();
 		
 		request.setAttribute("listaDeCategorias", listaDeCategorias);
 		return "FormularioInsertarLibro.jsp";

@@ -13,6 +13,7 @@ public class InsertarLibroAccion extends Accion {
 		String titulo = request.getParameter("titulo");
 		String categoria = request.getParameter("categoria");
 		
+		
 		Libro libro = new Libro(isbn, titulo, categoria);
 		libro.insertar();
 		

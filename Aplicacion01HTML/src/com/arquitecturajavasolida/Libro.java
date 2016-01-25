@@ -15,7 +15,9 @@ public class Libro {
 	@Id
 	private String isbn;
 	private String titulo;
-	private String categoria;
+	@ManyToOne
+	@JoinColumn(name="categoria")
+	private Categoria categoria;
 	
 	
 	@Override
@@ -45,19 +47,18 @@ public class Libro {
 		this.titulo = titulo;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
 	public Libro(String isbn, String titulo, String categoria) {
 		super();
 		this.isbn = isbn;
-		this.titulo = titulo;
-		this.categoria = categoria;
+		this.titulo = titulo;		
 	}
 	
 	public Libro() {
@@ -103,7 +104,7 @@ public class Libro {
 		
 		List<Libro> listaDeLibros = null;
 		Session session = factoriaSession.openSession();
-		listaDeLibros = session.createQuery(" from Libro libro").list();
+		listaDeLibros = session.createQuery(" from Libro libro right join fetch libro.categoria").list();
 		
 		session.close();
 		
