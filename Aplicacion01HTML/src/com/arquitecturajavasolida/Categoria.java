@@ -11,17 +11,26 @@ import org.hibernate.SessionFactory;
 @Table(name="Categorias")
 public class Categoria {
 	@Id
-	private String id;
+	private int id;
 	private String descripcion;
 	@OneToMany
 	@JoinColumn(name="categoria")
 	private List<Libro> listaDeLibros;
 	
-	public String getId() {
+	public Categoria() {
+		super();
+	}
+	
+	public Categoria(int id) {
+		super();
+		this.id = id;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -34,13 +43,13 @@ public class Categoria {
 	}
 
 	public int hashCode() {
-		return id.hashCode();
+		return id;
 	}
 
 	@Override
 	public boolean equals (Object o) {
-		String categoriaId = ((Categoria)o).getId();
-		return id.equals(categoriaId);
+		int categoriaId = ((Categoria)o).getId();
+		return id == categoriaId;
 	}
 	
 	@SuppressWarnings("unchecked")

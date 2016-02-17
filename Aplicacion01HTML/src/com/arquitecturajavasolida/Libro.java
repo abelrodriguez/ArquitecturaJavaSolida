@@ -55,10 +55,11 @@ public class Libro {
 		this.categoria = categoria;
 	}
 
-	public Libro(String isbn, String titulo, String categoria) {
+	public Libro(String isbn, String titulo, Categoria categoria) {
 		super();
 		this.isbn = isbn;
-		this.titulo = titulo;		
+		this.titulo = titulo;
+		this.categoria = categoria;
 	}
 	
 	public Libro() {
@@ -104,7 +105,7 @@ public class Libro {
 		
 		List<Libro> listaDeLibros = null;
 		Session session = factoriaSession.openSession();
-		listaDeLibros = session.createQuery(" from Libro libro right join fetch libro.categoria").list();
+		listaDeLibros = session.createQuery(" from Libro libro left join fetch libro.categoria").list();
 		
 		session.close();
 		

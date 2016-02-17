@@ -3,6 +3,7 @@ package com.arquitecturajavasolida.controlador.acciones;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arquitecturajavasolida.Categoria;
 import com.arquitecturajavasolida.Libro;
 
 public class ModificarLibroAccion extends Accion {
@@ -13,7 +14,9 @@ public class ModificarLibroAccion extends Accion {
 		String titulo = request.getParameter("titulo");
 		String categoria = request.getParameter("categoria");
 		
-		Libro libro = new Libro(isbn, titulo, categoria);
+		Categoria objetoCategoria = new Categoria(Integer.parseInt(categoria));
+		
+		Libro libro = new Libro(isbn, titulo, objetoCategoria);
 		libro.salvar();
 		
 		return "MostrarLibros.do";
