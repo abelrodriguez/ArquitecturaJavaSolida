@@ -1,4 +1,4 @@
-package com.arquitecturajavasolida.controlador.acciones;
+package com.arquitecturajava.aplicacion.controlador.acciones;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

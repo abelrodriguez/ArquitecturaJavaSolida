@@ -1,11 +1,11 @@
-package com.arquitecturajavasolida.controlador.acciones;
+package com.arquitecturajava.aplicacion.controlador.acciones;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.arquitecturajavasolida.Categoria;
+import com.arquitecturajava.aplicacion.bo.Categoria;
 
 public class FormularioInsertarLibroAccion extends Accion {
 

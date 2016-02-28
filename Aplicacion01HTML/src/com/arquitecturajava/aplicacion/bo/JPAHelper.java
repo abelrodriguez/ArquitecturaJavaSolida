@@ -1,4 +1,4 @@
-package com.arquitecturajavasolida;
+package com.arquitecturajava.aplicacion.bo;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

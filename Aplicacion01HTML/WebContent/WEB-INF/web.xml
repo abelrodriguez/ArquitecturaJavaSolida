@@ -13,7 +13,7 @@
 		<description></description>
 		<display-name>ControladorLibros</display-name>
 		<servlet-name>ControladorLibros</servlet-name>
-		<servlet-class>com.arquitecturajavasolida.controlador.ControladorLibros</servlet-class>
+		<servlet-class>com.arquitecturajava.aplicacion.controlador.ControladorLibros</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>

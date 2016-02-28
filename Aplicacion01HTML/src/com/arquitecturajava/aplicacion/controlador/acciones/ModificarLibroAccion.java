@@ -1,12 +1,12 @@
-package com.arquitecturajavasolida.controlador.acciones;
+package com.arquitecturajava.aplicacion.controlador.acciones;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.arquitecturajavasolida.Categoria;
-import com.arquitecturajavasolida.Libro;
+import com.arquitecturajava.aplicacion.bo.Categoria;
+import com.arquitecturajava.aplicacion.bo.Libro;
 
-public class InsertarLibroAccion extends Accion {
+public class ModificarLibroAccion extends Accion {
 
 	@Override
 	public String ejecutar(HttpServletRequest request, HttpServletResponse response) {
@@ -17,8 +17,9 @@ public class InsertarLibroAccion extends Accion {
 		Categoria objetoCategoria = new Categoria(Integer.parseInt(categoria));
 		
 		Libro libro = new Libro(isbn, titulo, objetoCategoria);
-		libro.insertar();
+		libro.salvar();
 		
 		return "MostrarLibros.do";
 	}
+
 }

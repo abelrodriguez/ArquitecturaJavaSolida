@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 
 <%@ page import="java.util.List" %>
-<%@ page import="com.arquitecturajavasolida.Libro" %>
+<%@ page import="com.arquitecturajava.aplicacion.bo.Libro" %>
 <% Libro libro = Libro.buscarPorClave(request.getParameter("isbn")); %>
 
 <head>

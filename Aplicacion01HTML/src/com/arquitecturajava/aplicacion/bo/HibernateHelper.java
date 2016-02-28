@@ -1,4 +1,4 @@
-package com.arquitecturajavasolida;
+package com.arquitecturajava.aplicacion.bo;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;;

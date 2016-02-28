@@ -1,4 +1,4 @@
-package com.arquitecturajavasolida;
+package com.arquitecturajava.aplicacion.bo;
 
 public class DataBaseException extends RuntimeException {
 	

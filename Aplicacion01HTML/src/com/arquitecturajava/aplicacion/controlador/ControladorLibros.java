@@ -1,4 +1,4 @@
-package com.arquitecturajavasolida.controlador;
+package com.arquitecturajava.aplicacion.controlador;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.arquitecturajavasolida.controlador.acciones.Accion;
+import com.arquitecturajava.aplicacion.controlador.acciones.Accion;
 
 public class ControladorLibros extends HttpServlet {
 	private static final long serialVersionUID = 1L;

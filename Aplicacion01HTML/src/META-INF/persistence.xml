@@ -5,8 +5,8 @@
 	<persistence-unit name="arquitecturaJava">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
-		<class>com.arquitecturajavasolida.Libro</class>
-		<class>com.arquitecturajavasolida.Categoria</class>
+		<class>com.arquitecturajava.aplicacion.bo.Libro</class>
+		<class>com.arquitecturajava.aplicacion.bo.Categoria</class>
 		<properties>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="javax.persistence.transactionType" value="RESOURCE_LOCAL" />

@@ -12,7 +12,7 @@
 		<!-- Se sustituye el mapeo XML por anotaciones en Libro.java
 		<mapping resource="com/arquitecturajavasolida/Libro.xml"/>  
 		-->
-		<mapping class="com.arquitecturajavasolida.Libro" />
-		<mapping class="com.arquitecturajavasolida.Categoria" />	
+		<mapping class="com.arquitecturajava.aplicacion.bo.Libro" />
+		<mapping class="com.arquitecturajava.aplicacion.bo.Categoria" />	
 	</session-factory>
 </hibernate-configuration>
