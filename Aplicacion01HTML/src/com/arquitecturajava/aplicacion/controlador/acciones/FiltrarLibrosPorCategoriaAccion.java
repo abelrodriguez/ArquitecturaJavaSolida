@@ -5,7 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
+import com.arquitecturajava.aplicacion.dao.jpa.CategoriaDAOJPAImpl;
+import com.arquitecturajava.aplicacion.dao.jpa.LibroDAOJPAImpl;
 
 public class FiltrarLibrosPorCategoriaAccion extends Accion {
 
@@ -14,13 +17,17 @@ public class FiltrarLibrosPorCategoriaAccion extends Accion {
 		
 		System.out.println("Filtrar");
 		String categoria = request.getParameter("categoria");
+		
+		CategoriaDAOJPAImpl categoriaDAO = new CategoriaDAOJPAImpl();
+		LibroDAOJPAImpl libroDAO = new LibroDAOJPAImpl();
 		List<Libro> listaDeLibros = null;
-		List<Libro> listaDeCategorias = Libro.buscarTodasLasCategorias();
+		List<Categoria> listaDeCategorias = categoriaDAO.buscarTodos();
 		
 		if (categoria == null || categoria.equals("seleccionar")) {
-			listaDeLibros = Libro.buscarTodos();
+			listaDeLibros = libroDAO.buscarTodos();
 		} else {
-			listaDeLibros = Libro.buscarPorCategoria(categoria);
+			Categoria categoriaseleccionada = categoriaDAO.buscarPorClave(Integer.parseInt(categoria));
+			listaDeLibros = libroDAO.buscarPorCategoria(categoriaseleccionada);
 		}
 		
 		request.setAttribute("listaDeLibros", listaDeLibros);

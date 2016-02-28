@@ -5,10 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 
-<%@ page import="java.util.List" %>
-<%@ page import="com.arquitecturajava.aplicacion.bo.Libro" %>
-<% Libro libro = Libro.buscarPorClave(request.getParameter("isbn")); %>
-
 <head>
 	<script type="text/javascript" src="js/validacion.js" ></script>
 	<link rel="stylesheet" type="text/css" href="css/formato.css" />
@@ -30,7 +26,7 @@
 			<select name="categoria">
 				<c:forEach var="categoria" items="${listaDeCategorias}">
 					<c:choose>
-						<c:when test="${libro.categoria==categoria}">
+						<c:when test="${categoria.descripcion==categoria}">
 							<option value="${categoria.id}" selected="selected">${categoria.descripcion}</option>
 						</c:when>
 						<c:otherwise>

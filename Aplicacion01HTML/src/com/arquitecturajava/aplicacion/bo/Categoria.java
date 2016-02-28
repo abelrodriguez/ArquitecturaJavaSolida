@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 @Entity
 @Table(name="Categorias")
 public class Categoria {
@@ -50,17 +47,6 @@ public class Categoria {
 	public boolean equals (Object o) {
 		int categoriaId = ((Categoria)o).getId();
 		return id == categoriaId;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static List<Categoria> buscarTodos() {
-		SessionFactory factoriaSession = HibernateHelper.getSessionFactory();
-		Session session = factoriaSession.openSession();
-		
-		List<Categoria> listaDeCategorias = session.createQuery(" from Categoria categoria").list();
-		session.close();
-		
-		return listaDeCategorias;
 	}
 	
 	public List<Libro> getListaDeLibros() {

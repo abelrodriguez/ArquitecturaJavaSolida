@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
+import com.arquitecturajava.aplicacion.dao.jpa.LibroDAOJPAImpl;
 
 public class ModificarLibroAccion extends Accion {
 
@@ -17,7 +18,9 @@ public class ModificarLibroAccion extends Accion {
 		Categoria objetoCategoria = new Categoria(Integer.parseInt(categoria));
 		
 		Libro libro = new Libro(isbn, titulo, objetoCategoria);
-		libro.salvar();
+		LibroDAOJPAImpl libroDAO = new LibroDAOJPAImpl();
+		
+		libroDAO.salvar(libro);
 		
 		return "MostrarLibros.do";
 	}

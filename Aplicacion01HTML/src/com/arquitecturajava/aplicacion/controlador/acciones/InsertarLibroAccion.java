@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
+import com.arquitecturajava.aplicacion.dao.jpa.LibroDAOJPAImpl;
 
 public class InsertarLibroAccion extends Accion {
 
@@ -17,7 +18,9 @@ public class InsertarLibroAccion extends Accion {
 		Categoria objetoCategoria = new Categoria(Integer.parseInt(categoria));
 		
 		Libro libro = new Libro(isbn, titulo, objetoCategoria);
-		libro.insertar();
+		
+		LibroDAOJPAImpl libroDAO = new LibroDAOJPAImpl();		
+		libroDAO.insertar(libro);
 		
 		return "MostrarLibros.do";
 	}

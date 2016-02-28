@@ -1,8 +1,7 @@
 package com.arquitecturajava.aplicacion.bo;
 
-import java.util.List;
-
 import javax.persistence.*;
+
 
 
 @Entity
@@ -67,132 +66,6 @@ public class Libro {
 		this.isbn = isbn;
 	}
 	
-	public void insertar() {
-		
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory();
-		EntityManager manager = factoriaSession.createEntityManager();
-		EntityTransaction tx = null;
-		
-		try {
-			tx = manager.getTransaction();
-			tx.begin();
-			manager.persist(this);
-			tx.commit();
-		} catch (PersistenceException e) {
-			manager.getTransaction().rollback();
-			throw e;
-		} finally {
-			manager.close();
-		}
-	}
 	
-	public void salvar() {
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory();
-		EntityManager manager = factoriaSession.createEntityManager();
-		EntityTransaction tx = null;
-		
-		try {
-			tx = manager.getTransaction();
-			tx.begin();
-			manager.merge(this);
-			tx.commit();
-		} catch (PersistenceException e) {
-			manager.getTransaction().rollback();
-			throw e;
-		} finally {
-			manager.close();
-		}
-	}
-	
-	public void borrar() {
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory();
-		EntityManager manager = factoriaSession.createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx=manager.getTransaction();
-			tx.begin();
-			manager.remove(manager.merge(this));
-			tx.commit();
-		} catch (PersistenceException e) {
-			manager.getTransaction().rollback();
-			throw e;
-		} finally {
-			manager.close();
-		}
-	}
-	
-	public static List<Libro> buscarTodos() {
-		
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory();
-		EntityManager manager = factoriaSession.createEntityManager();
-		
-		TypedQuery<Libro> consulta = manager.createQuery( "SELECT l FROM Libro l JOIN FETCH l.categoria", Libro.class);
-		
-		List<Libro> listaDeLibros = null;
-		
-		try {
-			listaDeLibros = consulta.getResultList();
-		} finally {
-			manager.close();
-		}
-		
-		return listaDeLibros;
-	}
-
-	public static List<Libro> buscarTodasLasCategorias() {
-		
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory();
-		EntityManager manager = factoriaSession.createEntityManager();
-		
-		TypedQuery<Libro> consulta = manager.createQuery( "select distinct libros.categoria as categoria from Libro libros", Libro.class);
-		
-		List<Libro> listaDeCategorias = null;
-		
-		try {
-			listaDeCategorias = consulta.getResultList();
-		} finally {
-			manager.close();
-		}
-		
-		return listaDeCategorias;
-		
-	}
-	
-	public static Libro buscarPorClave(String isbn) {
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory();
-		EntityManager manager = factoriaSession.createEntityManager();
-		
-		TypedQuery<Libro> consulta = manager.createQuery( "Select l from Libro l JOIN FETCH l.categoria where l.isbn=?1", Libro.class);
-		
-		consulta.setParameter(1, isbn);
-		
-		Libro libro = null;
-		
-		try {
-			libro = consulta.getSingleResult();
-		} finally {
-			manager.close();
-		}
-		
-		return libro;
-	}
-	
-	public static List<Libro> buscarPorCategoria( String categoria) {
-		
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory();
-		EntityManager manager = factoriaSession.createEntityManager();
-		TypedQuery<Libro> consulta = manager.createQuery( "Select l from Libro l where l.categoria=?1", Libro.class);
-		
-		consulta.setParameter(1, categoria);
-		
-		List<Libro> listaDeLibros = null;
-		
-		try {
-			listaDeLibros = consulta.getResultList();
-		} finally {
-			manager.close();
-		}
-		return listaDeLibros;
-	}
 	
 }
