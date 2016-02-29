@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Libro;
-import com.arquitecturajava.aplicacion.dao.jpa.LibroDAOJPAImpl;
+import com.arquitecturajava.aplicacion.dao.DAOAbstractFactory;
+import com.arquitecturajava.aplicacion.dao.DAOFactory;
+import com.arquitecturajava.aplicacion.dao.LibroDAO;
 
 public class BorrarLibroAccion extends Accion {
 
@@ -13,7 +15,9 @@ public class BorrarLibroAccion extends Accion {
 		String isbn = request.getParameter("isbn");
 		
 		Libro libro = new Libro(isbn);
-		LibroDAOJPAImpl libroDAO = new LibroDAOJPAImpl();
+		
+		DAOFactory factoria = DAOAbstractFactory.getInstance();
+		LibroDAO libroDAO = factoria.getLibroDAO();
 		libroDAO.borrar(libro);
 		
 		return "MostrarLibros.do";

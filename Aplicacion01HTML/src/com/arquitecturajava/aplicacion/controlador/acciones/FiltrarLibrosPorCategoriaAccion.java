@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
-import com.arquitecturajava.aplicacion.dao.jpa.CategoriaDAOJPAImpl;
-import com.arquitecturajava.aplicacion.dao.jpa.LibroDAOJPAImpl;
+import com.arquitecturajava.aplicacion.dao.CategoriaDAO;
+import com.arquitecturajava.aplicacion.dao.DAOAbstractFactory;
+import com.arquitecturajava.aplicacion.dao.DAOFactory;
+import com.arquitecturajava.aplicacion.dao.LibroDAO;
 
 public class FiltrarLibrosPorCategoriaAccion extends Accion {
 
@@ -18,8 +20,9 @@ public class FiltrarLibrosPorCategoriaAccion extends Accion {
 		System.out.println("Filtrar");
 		String categoria = request.getParameter("categoria");
 		
-		CategoriaDAOJPAImpl categoriaDAO = new CategoriaDAOJPAImpl();
-		LibroDAOJPAImpl libroDAO = new LibroDAOJPAImpl();
+		DAOFactory factoria = DAOAbstractFactory.getInstance();
+		LibroDAO libroDAO = factoria.getLibroDAO();
+		CategoriaDAO categoriaDAO = factoria.getCategoriaDAO();
 		List<Libro> listaDeLibros = null;
 		List<Categoria> listaDeCategorias = categoriaDAO.buscarTodos();
 		
