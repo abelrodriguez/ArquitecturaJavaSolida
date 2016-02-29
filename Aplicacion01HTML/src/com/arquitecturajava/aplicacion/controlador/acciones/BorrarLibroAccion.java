@@ -4,9 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Libro;
-import com.arquitecturajava.aplicacion.dao.DAOAbstractFactory;
-import com.arquitecturajava.aplicacion.dao.DAOFactory;
-import com.arquitecturajava.aplicacion.dao.LibroDAO;
+import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
+import com.arquitecturajava.aplicacion.servicios.impl.ServicioLibrosImpl;
 
 public class BorrarLibroAccion extends Accion {
 
@@ -16,9 +15,9 @@ public class BorrarLibroAccion extends Accion {
 		
 		Libro libro = new Libro(isbn);
 		
-		DAOFactory factoria = DAOAbstractFactory.getInstance();
-		LibroDAO libroDAO = factoria.getLibroDAO();
-		libroDAO.borrar(libro);
+		
+		ServicioLibros servicioLibros = new ServicioLibrosImpl();
+		servicioLibros.borrarLibro(libro);
 		
 		return "MostrarLibros.do";
 		

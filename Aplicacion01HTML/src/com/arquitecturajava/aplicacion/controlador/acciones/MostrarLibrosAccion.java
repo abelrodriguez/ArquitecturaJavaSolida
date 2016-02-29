@@ -7,10 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
-import com.arquitecturajava.aplicacion.dao.CategoriaDAO;
-import com.arquitecturajava.aplicacion.dao.DAOAbstractFactory;
-import com.arquitecturajava.aplicacion.dao.DAOFactory;
-import com.arquitecturajava.aplicacion.dao.LibroDAO;
+import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
+import com.arquitecturajava.aplicacion.servicios.impl.ServicioLibrosImpl;
 
 
 public class MostrarLibrosAccion extends Accion {
@@ -18,12 +16,10 @@ public class MostrarLibrosAccion extends Accion {
 	@Override
 	public String ejecutar(HttpServletRequest request, HttpServletResponse response) {
 		
-		DAOFactory factoria = DAOAbstractFactory.getInstance();
-		LibroDAO libroDAO = factoria.getLibroDAO();
-		CategoriaDAO categoriaDAO = factoria.getCategoriaDAO();
-
-		List<Libro> listaDeLibros = libroDAO.buscarTodos();
-		List<Categoria> listaDeCategorias = categoriaDAO.buscarTodos();
+		ServicioLibros servicioLibros = new ServicioLibrosImpl();
+		
+		List<Libro> listaDeLibros = servicioLibros.buscarTodosLosLibros();
+		List<Categoria> listaDeCategorias = servicioLibros.buscarCategoriasLibros();
 		
 		request.setAttribute("listaDeLibros", listaDeLibros);
 		request.setAttribute("listaDeCategorias", listaDeCategorias);
