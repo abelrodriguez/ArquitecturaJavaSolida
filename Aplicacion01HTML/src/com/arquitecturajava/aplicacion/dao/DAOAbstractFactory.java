@@ -5,7 +5,7 @@ import com.arquitecturajava.aplicacion.dao.jpa.DAOJPAFactory;
 
 public abstract class DAOAbstractFactory {
 	public static DAOFactory getInstance() {
-		String tipo = "JPA";
+		String tipo = "Hibernate";
 		
 		if (tipo.equals("Hibernate")) {
 			return new DAOHibernateFactory();
